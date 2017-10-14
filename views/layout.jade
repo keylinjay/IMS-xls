@@ -1,0 +1,24 @@
+doctype html
+html(lang = 'zh-cn')
+    head
+        meta(charset = 'UTF-8')
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible" content="ie=edge")
+        
+        block css
+            link(rel="stylesheet" href="stylesheets/basic.css")
+        
+        
+
+        title= title
+
+    body
+        block content
+
+        block foot
+            #footer
+                p this is footer
+
+        block scripts
+            //- script(src="javascripts/$vue.js" charset="utf-8")
+            script(src="javascripts/basic.js" charset="utf-8")

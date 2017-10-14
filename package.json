@@ -1,0 +1,19 @@
+{
+  "name": "nodejs-excel",
+  "version": "1.0.0",
+  "description": "测试node服务器应用",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "exceljs": "^0.5.0",
+    "express": "^4.15.3",
+    "jade": "^1.11.0",
+    "mongoose": "^4.11.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "author": "keylinjay",
+  "license": "ISC"
+}

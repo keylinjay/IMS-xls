@@ -1,0 +1,83 @@
+extends layout
+
+block content
+
+    //- section#panel
+
+    //-     -each title in dataTitle
+    //-         -if (title === 'id')
+    //-             li.title.hide
+    //-                 label(for= tile) 
+    //-                     span.key #{title}
+    //-                     br
+    //-                     input.value(name= title class= title)
+    //-         -else
+    //-             li.title
+    //-                 label(for= tile) 
+    //-                     span.key #{title}
+    //-                     br
+    //-                     input.value(name= title class= title)
+    //-     button.btn.add 增加
+    //-     button.btn.find 查找
+
+    //- section#title
+        //- -each title in dataTitle
+        //-     -if (title === 'id')
+        //-         span.title.hide(class= title) #{title}
+        //-     -else
+        //-         span.title(class= title) #{title}
+    //- ul#records        
+    //-     - each val, key in res
+    //-         li.record
+    //-             -each title in dataTitle
+    //-                 -if (title === 'id')
+    //-                     input.value.hide(name= title class= title value= val[title] disabled)
+    //-                 -else
+    //-                     input.value(name= title class= title value= val[title] disabled)
+    //-             button.btn.remove 删除
+    //-             button.btn.fix 修改
+    //-             button.btn.update.disable 确认提交
+
+    table(border = '1')
+        caption #{res[0]['文件类型']}
+        thead
+            tr
+                -each title in dataTitle
+                    -if (title === 'id')
+                        td.title.hide(class= title) #{title}
+                    -else
+                        td.title(class= title) #{title}
+                td 功能按钮
+                td 功能按钮
+                td 功能按钮
+            tr#panel
+                -each title in dataTitle
+                    -if (title === 'id')
+                        td.value.hide(name= title class= title)
+                            input.value(name= title class= title)
+                    -else if (title === '文件类型')
+                        td.value(name= title class= title)
+                            select.value(name= title class= title)
+                                -each type in filetype
+                                    option(value= type) #{type}
+                            
+                    -else
+                        td.value(name= title class= title)
+                            input.value(name= title class= title)
+                td.btn.add 增加
+                td.btn.find 查找      
+        tbody#records  
+            - each val, key in res
+                tr.record
+                    -each title in dataTitle
+                        -if (title === 'id')
+                            td.value.hide(name= title class= title value= val[title]) #{val[title]}
+                        -else
+                            td.value(name= title class= title value= val[title]) #{val[title]}
+                    
+                    td.btn.remove 删除
+                
+                    td.btn.fix 修改
+                    td.btn.update.disable 保存
+                    td.btn.cancel.disable 取消
+                    

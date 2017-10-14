@@ -1,0 +1,7 @@
+- each val, key in res
+    li.record
+        -each title in dataTitle
+            input.value(name= title class= title value= val[title] disabled)
+        button.btn.remove 删除
+        button.btn.fix 修改
+        button.btn.update.disable 确认提交
