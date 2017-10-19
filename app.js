@@ -11,7 +11,7 @@ mongoose.connect('mongodb://localhost/DC_db', { useMongoClient: true });
 const Schema = mongoose.Schema;
 
 const ObjectId = Schema.ObjectId;
-const DCSchema = mongoose.Schema({
+const DCSchema = new Schema({
     '文件类型': String,
     '序号': String, 
     '文件编号': String, 
