@@ -5,6 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "node",
+            "request": "launch",
+            "name": "启动应用程序",
+            "program": "${workspaceFolder}/app.js"
+        },
+        {
             "type": "chrome",
             "request": "launch",
             "name": "启动chrome测试node应用",
@@ -14,8 +20,8 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "启动node应用",
-            "program": "${workspaceRoot}/app"
+            "name": "启动node测试",
+            "program": "${file}"
         }
        
     ]

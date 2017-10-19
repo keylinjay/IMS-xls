@@ -5,34 +5,9 @@ const express = require('express');
 
 const bodyParser = require('body-parser');
 
-const mongoose = require('mongoose');
-//定义数据库接口
-mongoose.connect('mongodb://localhost/DC_db', { useMongoClient: true });
-const Schema = mongoose.Schema;
+var B7 = require('./bin/b7.js');
 
-const ObjectId = Schema.ObjectId;
-const DCSchema = new Schema({
-    '文件类型': String,
-    '序号': String, 
-    '文件编号': String, 
-    '文件名称': String, 
-    '发文单位': String, 
-    '收文单位': String, 
-    '抄送单位': String, 
-    '页码': String, 
-    '收文时间': String, 
-    '是否需要回复': String, 
-    '状态': String, 
-    '存放地点': String, 
-    '主送部门': String, 
-    '备注': String, 
-    '监理回复日期': String, 
-    '设计回复日期': String, 
-    '业主回复日期': String, 
-    '归属包号': String
-});
-const B7 = mongoose.model('PA', DCSchema);
-
+var Cache = require('./bin/dataCache.js');
 
 // 定义参数
 const hostname = '127.0.0.1';
@@ -45,7 +20,6 @@ const dataTitle1 = ['id', 'serial', 'name', 'age'];
 // 存放数据的标题
 const dataTitle = ['id', '文件类型','序号', '文件编号', '文件名称', '发文单位', '收文单位', '抄送单位', '页码', '收文时间', '是否需要回复', '状态', '存放地点', '主送部门', '备注', '监理回复日期', '设计回复日期', '业主回复日期', '归属包号'];
 
-const filetype = ['OSA', 'RFI', 'WSA', 'MSA', 'SSR', '其他TRS', '会议纪要TRS', '信函', 'DIS', 'PA', 'RVO', 'RFO', 'SM', 'CVI', 'SIC', 'COP', 'NCR', '设计传送单'];
 
 const app = express();
 //设置静态资源
@@ -56,6 +30,7 @@ app.use(bodyParser.json());
 app.set('views', './views');
 app.set('view engine', 'jade');
 app.get('/', (req, res) => {
+    Cache.updateCacheAll();
     B7.find({'文件类型': 'PA'}, (err, records) => {
         if (err) return console.error(err);
         console.log('the find resulst is:');
@@ -63,7 +38,7 @@ app.get('/', (req, res) => {
         res.render('index', {
             title: 'key',
             dataTitle: dataTitle,
-            filetype: filetype,
+            Cache: Cache,
             res: records.reverse()
         });
     });

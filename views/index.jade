@@ -55,12 +55,13 @@ block content
                     -if (title === 'id')
                         td.value.hide(name= title class= title)
                             input.value(name= title class= title)
-                    -else if (title === '文件类型')
+                    -else if (Cache.updateKeys.indexOf(title) !== -1)
                         td.value(name= title class= title)
                             select.value(name= title class= title)
-                                -each type in filetype
+                                option(selected="selected")
+                                -each type in Cache.data[title]
                                     option(value= type) #{type}
-                            
+                                                          
                     -else
                         td.value(name= title class= title)
                             input.value(name= title class= title)
