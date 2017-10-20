@@ -28,6 +28,19 @@ table {
     background-color: #FD6A6A;
 }
 
+.sug {
+    position: absolute;
+    min-width: 4em;
+    cursor: default;
+}
+.sug .sug-val:hover{
+    background-color: rgb(216, 216, 216);
+
+}
+.sugbg {
+    background-color: #fff;
+}
+
 .序号, .页码 {width: 2em}
 .文件类型, .收文时间, .状态, .存放地点, .主送部门, .归属包号 {width: 4em}
 .是否需要回复 {width: 3em}
