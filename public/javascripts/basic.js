@@ -250,22 +250,25 @@ eventProx($q('#panel')[0], 'value', 'change', (event) => {
 });
 
 // focus , blur事件 遇到不支持的标签 无法继续冒泡传递，所以要采用捕获机制 添加参数true
-eventProx($q('#panel')[0], 'value', 'focus', (event) => {
+eventProx($q('#panel')[0], 'value', 'focusin', (event) => {
     var target = event.target;
     console.log('成功触发了focus事件');
     // console.log(target);
     if (target.tagName.toLowerCase() === 'input'){
         toogleClassName($q('.sug', target.parentNode)[0], 'disable');
     }
-}, true);
+});
 
-eventProx($q('#panel')[0], 'value', 'blur', (event) => {
+eventProx($q('#panel')[0], 'value', 'focusout', (event) => {
     var target = event.target;
     console.log('成功触发了blur事件');
     if (target.tagName.toLowerCase() === 'input'){
-        toogleClassName($q('.sug', target.parentNode)[0], 'disable');
+        setTimeout(()=>{
+            toogleClassName($q('.sug', target.parentNode)[0], 'disable');
+        },500);
+        // toogleClassName($q('.sug', target.parentNode)[0], 'disable');
     }
-}, true);
+});
 
 // sug 建议面板的 建议选项被点击后 对应的 input更新值
 eventProx($q('#panel')[0], 'sug-val', 'click', (event) =>{
@@ -273,4 +276,5 @@ eventProx($q('#panel')[0], 'sug-val', 'click', (event) =>{
     var val = elGetVal(target);
     console.log($q('input', target.parentNode.parentNode)[0]);
     elSetVal($q('input', target.parentNode.parentNode)[0], val);
+    panelData[elGetName(target.parentNode)] = val;
 });

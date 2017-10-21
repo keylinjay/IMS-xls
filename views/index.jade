@@ -22,9 +22,9 @@ block content
                         td.value.hide(name= title class= title)
                             input.value(name= title class= title)
                     -else if (Cache.updateKeys.indexOf(title) !== -1)
-                        td.value。box(name= title class= title)
+                        td.value(name= title class= title)
                             input.value(name= title class= title)
-                            ul.sug.sugbg.disable
+                            ul.sug.sugbg.disable(name= title)
                                 -each val in Cache.data[title]
                                     li.sug-val(value = val) #{val}
                             //- select.value(name= title class= title)
